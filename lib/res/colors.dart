@@ -40,6 +40,7 @@ class Colours {
   static const Color text_73_70 = Color(0xB3000000);
   static const Color text_22_30 = Color(0x4D222222);
   static const Color gray_f1 = Color(0xfff1f1f1); //<!--204-->
+  static const Color text_22_7a = Color(0x337A7A7A);
 
   static const Color gray_f0 = Color(0xfff0f0f0); //<!--204-->
   static const Color gray_f5 = Color(0xfff5f5f5); //<!--204-->

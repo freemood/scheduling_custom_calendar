@@ -5,6 +5,7 @@ import 'package:scheduling_custom_calendar/model/calendar/entity/shift_calendar_
 import 'package:scheduling_custom_calendar/model/calendar/utils/Utils.dart';
 import 'package:scheduling_custom_calendar/res/colors.dart';
 import 'package:scheduling_custom_calendar/res/dimens.dart';
+import 'package:scheduling_custom_calendar/utils/log_util.dart';
 import 'package:scheduling_custom_calendar/utils/object_util.dart';
 import 'package:scheduling_custom_calendar/utils/widget_utils.dart';
 import 'package:tuple/tuple.dart';
@@ -32,6 +33,7 @@ class Calendar extends StatefulWidget {
       this.isBeforeMonth: false,
       this.isNextDayWeek: true,
       this.isBeforeWeek: true,
+      this.isClick: true,
       this.initialCalendarDateOverride});
 
   final DayBuilder dayBuilder;
@@ -44,13 +46,14 @@ class Calendar extends StatefulWidget {
   final bool showCalendarPickerIcon;
   final bool showChevronsToChangeRange;
   final bool showTodayAction;
-  final bool isHideScheduling;//是否隐藏班次
-  final bool isHideChangeWeek;//是否隐藏上一周下一周
-  final bool isNextMonth;//是否需要切换下一月
-  final bool isBeforeMonth;//是否需要切换上一月
-  final bool isNextDayWeek;//是否需要切换下一周
-  final bool isBeforeWeek;//是否需要切换上一周
-  final bool isShowMonthView;//默认是月历
+  final bool isHideScheduling; //是否隐藏班次
+  final bool isHideChangeWeek; //是否隐藏上一周下一周
+  final bool isNextMonth; //是否需要切换下一月
+  final bool isBeforeMonth; //是否需要切换上一月
+  final bool isNextDayWeek; //是否需要切换下一周
+  final bool isBeforeWeek; //是否需要切换上一周
+  final bool isShowMonthView; //默认是月历
+  final bool isClick; //是否需要点击
   final Map<String, ShiftCalendarEntity> shiftMap;
 
   @override
@@ -286,8 +289,9 @@ class _CalendarState extends State<Calendar> {
           // }
           dayWidgets.add(
             CalendarTile(
-              onDateSelected: () => handleSelectedDateAndUserCallback(day,isEnded: monthStarted && !monthEnded),
+              onDateSelected: () => handleSelectedDateAndUserCallback(day),
               date: day,
+              isClick: hasClick(monthStarted, monthEnded),
               dateStyles: configureDateStyle(monthStarted, monthEnded),
               isSelected: Utils.isSameDay(selectedDate, day),
               isHideScheduling: this.widget.isHideScheduling,
@@ -298,6 +302,21 @@ class _CalendarState extends State<Calendar> {
       },
     );
     return dayWidgets;
+  }
+
+  bool hasClick(monthStarted, monthEnded) {
+    if (widget.isClick) {
+      return true;
+    } else {
+      if (isExpanded) {
+        if (monthStarted && !monthEnded) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      return true;
+    }
   }
 
   TextStyle configureDateStyle(monthStarted, monthEnded) {
@@ -503,10 +522,8 @@ class _CalendarState extends State<Calendar> {
     }
   }
 
-  void handleSelectedDateAndUserCallback(DateTime day,{bool isEnded:true}) {
-    if (!isEnded) {
-      return;
-    }
+  void handleSelectedDateAndUserCallback(DateTime day,
+      {bool monthStarted, bool monthEnded}) {
     var firstDayOfCurrentWeek = Utils.firstDayOfWeek(day);
     var lastDayOfCurrentWeek = Utils.lastDayOfWeek(day);
     setState(() {

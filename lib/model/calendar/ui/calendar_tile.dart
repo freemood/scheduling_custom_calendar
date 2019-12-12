@@ -19,6 +19,7 @@ class CalendarTile extends StatelessWidget {
   final Widget child;
   final bool isHideScheduling;
   final Map<String, ShiftCalendarEntity> shiftMap;
+  final bool isClick;
 
   CalendarTile({
     this.onDateSelected,
@@ -31,6 +32,7 @@ class CalendarTile extends StatelessWidget {
     this.isSelected: false,
     this.isHideScheduling: true,
     this.shiftMap,
+    this.isClick: true,
   });
   static Map<String, String> _nlMap = Map();
 
@@ -44,7 +46,11 @@ class CalendarTile extends StatelessWidget {
     } else {
       return InkWell(
         splashColor: Colors.transparent,
-        onTap: onDateSelected,
+        onTap: () {
+          if (isClick) {
+            onDateSelected();
+          }
+        },
         child: Container(
           decoration: isSelected
               ? BoxDecoration(
@@ -102,7 +108,7 @@ class CalendarTile extends StatelessWidget {
     var name = '暂无';
     var color = Colours.title_white_7a;
     var day = Utils.apiDayFormat(date);
-    Color textColor;
+    Color textColor= HexColor('0x337A7A7A');
     if (null != shiftMap) {
       shiftMap.forEach((key, value) {
         if (key.contains(day)) {
