@@ -8,7 +8,6 @@ import 'package:scheduling_custom_calendar/utils/hex_color.dart';
 import 'package:scheduling_custom_calendar/utils/object_util.dart';
 import 'package:scheduling_custom_calendar/utils/widget_utils.dart';
 
-
 class CalendarTile extends StatelessWidget {
   final VoidCallback onDateSelected;
   final DateTime date;
@@ -101,7 +100,7 @@ class CalendarTile extends StatelessWidget {
   Widget _showSchedulingView(String type,
       {Color textColor: Colours.text_22_30}) {
     var name = '暂无';
-    var color = Colours.title_white_70;
+    var color = Colours.title_white_7a;
     var day = Utils.apiDayFormat(date);
     Color textColor;
     if (null != shiftMap) {
@@ -109,10 +108,12 @@ class CalendarTile extends StatelessWidget {
         if (key.contains(day)) {
           name = value.name;
           if (ObjectUtil.isEmptyString(value.color)) {
-            color = Colours.title_white_70;
+            color = Colours.title_white_7a;
           } else {
             color = HexColor(value.color);
-            textColor = HexColor('0x33' + value.color);
+
+            textColor = HexColor(
+                value.color == 'B0B0B0' ? '0x66' : '0x33' + value.color);
           }
         }
       });
@@ -130,7 +131,7 @@ class CalendarTile extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
             // border: Border.all(width: 1, color: Colours.main_01),
-            color: Colours.title_white_70 != color
+            color: Colours.title_white_7a != color
                 ? textColor
                 : (ObjectUtil.isEmptyString(type)
                     ? Colours.text_22_30
@@ -142,8 +143,7 @@ class CalendarTile extends StatelessWidget {
   }
 
   bool isToday() {
-    return  Utils.apiDayFormat(DateTime.now()) ==
-        Utils.apiDayFormat(date);
+    return Utils.apiDayFormat(DateTime.now()) == Utils.apiDayFormat(date);
   }
 
   String _getNl(DateTime date) {

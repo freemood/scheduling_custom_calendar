@@ -286,7 +286,7 @@ class _CalendarState extends State<Calendar> {
           // }
           dayWidgets.add(
             CalendarTile(
-              onDateSelected: () => handleSelectedDateAndUserCallback(day),
+              onDateSelected: () => handleSelectedDateAndUserCallback(day,isEnded: monthStarted && !monthEnded),
               date: day,
               dateStyles: configureDateStyle(monthStarted, monthEnded),
               isSelected: Utils.isSameDay(selectedDate, day),
@@ -503,7 +503,10 @@ class _CalendarState extends State<Calendar> {
     }
   }
 
-  void handleSelectedDateAndUserCallback(DateTime day) {
+  void handleSelectedDateAndUserCallback(DateTime day,{bool isEnded:true}) {
+    if (!isEnded) {
+      return;
+    }
     var firstDayOfCurrentWeek = Utils.firstDayOfWeek(day);
     var lastDayOfCurrentWeek = Utils.lastDayOfWeek(day);
     setState(() {

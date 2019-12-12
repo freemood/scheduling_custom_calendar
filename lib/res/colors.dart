@@ -34,6 +34,7 @@ class Colours {
   static const Color title_white = Color(0xffffffff);
   static const Color title_white_40 = Color(0x66ffffff);
   static const Color title_white_70 = Color(0xB3ffffff);
+  static const Color title_white_7a = Color(0xff7A7A7A);
 
   static const Color text_26_40 = Color(0x66262626);
   static const Color text_73_70 = Color(0xB3000000);
