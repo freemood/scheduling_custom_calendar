@@ -1,4 +1,4 @@
-class ShiftEntity {
+class ShiftCalendarEntity {
   String color;
   String day;
   String endTime;
@@ -11,5 +11,5 @@ class ShiftEntity {
   String date;
   bool hasNext;
   bool hasBefore;
-  ShiftEntity({this.color, this.day, this.endTime, this.name, this.startTime});
+  ShiftCalendarEntity({this.color, this.day, this.endTime, this.name, this.startTime});
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:scheduling_custom_calendar/model/calendar/entity/shift_entity.dart';
+import 'package:scheduling_custom_calendar/model/calendar/entity/shift_calendar_entity.dart';
 import 'package:scheduling_custom_calendar/model/calendar/utils/Utils.dart';
 import 'package:scheduling_custom_calendar/model/calendar/utils/lunar_util.dart';
 import 'package:scheduling_custom_calendar/res/colors.dart';
@@ -20,7 +19,7 @@ class CalendarTile extends StatelessWidget {
   final TextStyle dateStyles;
   final Widget child;
   final bool isHideScheduling;
-  final Map<String, ShiftEntity> shiftMap;
+  final Map<String, ShiftCalendarEntity> shiftMap;
 
   CalendarTile({
     this.onDateSelected,

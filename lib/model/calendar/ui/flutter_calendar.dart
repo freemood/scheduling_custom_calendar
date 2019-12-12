@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:scheduling_custom_calendar/model/calendar/entity/shift_entity.dart';
+import 'package:scheduling_custom_calendar/model/calendar/entity/shift_calendar_entity.dart';
 import 'package:scheduling_custom_calendar/model/calendar/utils/Utils.dart';
 import 'package:scheduling_custom_calendar/res/colors.dart';
 import 'package:scheduling_custom_calendar/res/dimens.dart';
@@ -51,7 +51,7 @@ class Calendar extends StatefulWidget {
   final bool isNextDayWeek;//是否需要切换下一周
   final bool isBeforeWeek;//是否需要切换上一周
   final bool isShowMonthView;//默认是月历
-  final Map<String, ShiftEntity> shiftMap;
+  final Map<String, ShiftCalendarEntity> shiftMap;
 
   @override
   _CalendarState createState() => _CalendarState();
