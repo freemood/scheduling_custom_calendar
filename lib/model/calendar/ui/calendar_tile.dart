@@ -109,11 +109,11 @@ class CalendarTile extends StatelessWidget {
           name = value.name;
           if (ObjectUtil.isEmptyString(value.color)) {
             color = Colours.title_white_7a;
+            textColor = HexColor('0x337A7A7A');
           } else {
             color = HexColor(value.color);
-
             textColor = HexColor(
-                value.color == 'B0B0B0' ? '0x66' : '0x33' + value.color);
+                (value.color == 'B0B0B0' ? '0x66' : '0x33') + value.color);
           }
         }
       });
@@ -131,11 +131,7 @@ class CalendarTile extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
             // border: Border.all(width: 1, color: Colours.main_01),
-            color: Colours.title_white_7a != color
-                ? textColor
-                : (ObjectUtil.isEmptyString(type)
-                    ? Colours.text_22_30
-                    : Colors.transparent),
+            color: 'hide' != type ? textColor : Colors.transparent,
           ),
         ),
       ),
