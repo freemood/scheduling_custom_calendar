@@ -17,20 +17,28 @@ scheduling_custom_calendar:<br>
     git:<br>
       url: https://github.com/freemood/scheduling_custom_calendar.git<br>
 2.使用日历方法<br>
- Widget _calendarView() {<br>
-    return Calendar(<br>
-        isExpandable: true,<br>
-        onDateSelected: (date) => handleNewDate(date),<br>
-        displayMonthChange: (data) => handleDisplayMonth(data),<br>
-        isHideScheduling: false,<br>
-        shiftMap: _shiftMap,<br>
-        isClick: true,<br>
-        isBeforeMonth: _isBeforeDay,<br>
-        isNextMonth: _isNextDay,<br>
-        isShowMonthView: true,<br>
-    );<br>
-  }<br>
-  
+```
+Widget _calendarView() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 8),
+      decoration: BoxDecoration(
+        color: Colours.title_white,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Calendar(
+        isExpandable: true,
+        onDateSelected: (date) => handleNewDate(date),
+        displayMonthChange: (data) => handleDisplayMonth(data),
+        isHideScheduling: false,
+        shiftMap: _shiftMap,
+        isClick: true,
+        isBeforeMonth: _isBeforeDay,
+        isNextMonth: _isNextDay,
+        isShowMonthView: true,
+      ),
+    );
+  }
+```
   isExpandable：是否需要切换月（周）历<br>
   onDateSelected：选择的日期<br>
   displayMonthChange：监听年月<br>
