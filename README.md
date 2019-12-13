@@ -51,7 +51,7 @@ Widget _calendarView() {
   isBeforeWeek:是否需要切换上一周<br>
   isShowMonthView：默认是月历<br>
   
-3.效果图
+3.效果图<br>
 ![paiban_month](https://haojing-gis-server.oss-cn-shanghai.aliyuncs.com/gis-app/app_apk/paiban_month.jpg)
 ![paiban_week](https://haojing-gis-server.oss-cn-shanghai.aliyuncs.com/gis-app/app_apk/paiban_week.jpg)
 ![department_week](https://haojing-gis-server.oss-cn-shanghai.aliyuncs.com/gis-app/app_apk/department_week.jpg)
