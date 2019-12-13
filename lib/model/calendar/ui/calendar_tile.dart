@@ -20,6 +20,8 @@ class CalendarTile extends StatelessWidget {
   final bool isHideScheduling;
   final Map<String, ShiftCalendarEntity> shiftMap;
   final bool isClick;
+  final FontWeight fontWeight;
+  final double fontSize;
 
   CalendarTile({
     this.onDateSelected,
@@ -33,6 +35,8 @@ class CalendarTile extends StatelessWidget {
     this.isHideScheduling: true,
     this.shiftMap,
     this.isClick: true,
+    this.fontWeight,
+    this.fontSize,
   });
   static Map<String, String> _nlMap = Map();
 
@@ -76,8 +80,8 @@ class CalendarTile extends StatelessWidget {
                         style: isSelected
                             ? TextStyle(
                                 color: Colours.text_2222,
-                                fontWeight: FontWeight.w500,
-                                fontSize: Dimens.FONT_SIZE_18,
+                                fontWeight: fontWeight,
+                                fontSize: fontSize,
                               )
                             : dateStyles,
                         textAlign: TextAlign.center,
@@ -88,14 +92,15 @@ class CalendarTile extends StatelessWidget {
                     _getNl(date),
                     style: TextStyle(
                         color: Colours.text_73_70,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: fontWeight,
                         fontSize: Dimens.FONT_SIZE_12),
                     textAlign: TextAlign.center,
                   ),
-                  _showSchedulingView('hide', textColor: Colors.transparent),
+                  _showSchedulingView('hide',
+                      textColor: Colors.transparent, fontweight: fontWeight),
                 ],
               ),
-              _showSchedulingView(''),
+              _showSchedulingView('', fontweight: fontWeight),
             ],
           ),
         ),
@@ -104,11 +109,11 @@ class CalendarTile extends StatelessWidget {
   }
 
   Widget _showSchedulingView(String type,
-      {Color textColor: Colours.text_22_30}) {
+      {Color textColor: Colours.text_22_30, fontweight}) {
     var name = '暂无';
     var color = Colours.title_white_7a;
     var day = Utils.apiDayFormat(date);
-    Color textColor= HexColor('0x337A7A7A');
+    Color textColor = HexColor('0x337A7A7A');
     if (null != shiftMap) {
       shiftMap.forEach((key, value) {
         if (key.contains(day)) {
@@ -133,7 +138,7 @@ class CalendarTile extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 4),
           child: WidgetUtils.getTextColorView(name, color, Dimens.FONT_SIZE_12,
-              fontweight: FontWeight.w500, textAlign: TextAlign.center),
+              fontweight: fontweight, textAlign: TextAlign.center),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
             // border: Border.all(width: 1, color: Colours.main_01),

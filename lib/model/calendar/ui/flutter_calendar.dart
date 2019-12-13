@@ -34,6 +34,9 @@ class Calendar extends StatefulWidget {
       this.isNextDayWeek: true,
       this.isBeforeWeek: true,
       this.isClick: true,
+      this.isUseImage: false,
+      this.fontWeight,
+      this.fontSize,
       this.initialCalendarDateOverride});
 
   final DayBuilder dayBuilder;
@@ -54,7 +57,10 @@ class Calendar extends StatefulWidget {
   final bool isBeforeWeek; //是否需要切换上一周
   final bool isShowMonthView; //默认是月历
   final bool isClick; //是否需要点击
+  final bool isUseImage;
   final Map<String, ShiftCalendarEntity> shiftMap;
+  FontWeight fontWeight = FontWeight.w500;
+  double fontSize = Dimens.FONT_SIZE_18;
 
   @override
   _CalendarState createState() => _CalendarState();
@@ -325,17 +331,17 @@ class _CalendarState extends State<Calendar> {
       dateStyles = monthStarted && !monthEnded
           ? TextStyle(
               color: Colours.text_2222,
-              fontWeight: FontWeight.w500,
-              fontSize: Dimens.FONT_SIZE_18)
+              fontWeight:widget.fontWeight,
+              fontSize: widget.fontSize)
           : TextStyle(
               color: Colours.text_26_40,
-              fontWeight: FontWeight.w500,
-              fontSize: Dimens.FONT_SIZE_18);
+              fontWeight: widget.fontWeight,
+              fontSize: widget.fontSize);
     } else {
       dateStyles = TextStyle(
           color: Colours.text_2222,
-          fontWeight: FontWeight.w500,
-          fontSize: Dimens.FONT_SIZE_18);
+          fontWeight: widget.fontWeight,
+          fontSize: widget.fontSize);
     }
     return dateStyles;
   }
@@ -352,12 +358,18 @@ class _CalendarState extends State<Calendar> {
               toggleExpanded();
             },
             child: Container(
-              color: Colors.transparent,
-              child: isExpanded
-                  ? WidgetUtils.getImageAssetWidget('date_arrow_up', size: 32)
-                  : WidgetUtils.getImageAssetWidget('date_arrow_down',
-                      size: 32),
-            ),
+                color: Colors.transparent,
+                child: isExpanded
+                    ? (widget.isUseImage
+                        ? WidgetUtils.getImageAssetWidget('date_arrow_up',
+                            size: 32)
+                        : Icon(Icons.keyboard_arrow_up,
+                            color: Colours.text_04, size: 32))
+                    : (widget.isUseImage
+                        ? WidgetUtils.getImageAssetWidget('date_arrow_down',
+                            size: 32)
+                        : Icon(Icons.keyboard_arrow_down,
+                            color: Colours.text_04, size: 32))),
           ),
         ],
       );
@@ -465,7 +477,7 @@ class _CalendarState extends State<Calendar> {
     DateTime selected = await showDatePicker(
       context: context,
       initialDate: _selectedDate ?? DateTime.now(),
-      firstDate: DateTime(2016),
+      firstDate: DateTime(1971),
       lastDate: DateTime(2030),
     );
 

@@ -1,7 +1,7 @@
 name: scheduling_custom_calendar
 description: 自定义的排班日历.
 version: 0.0.1
-author: freemood <yangxu910@163.com>
+author: freemood <yangxu910@gmail.com>
 homepage: https://github.com/freemood/scheduling_custom_calendar.git
 
 environment:
@@ -24,8 +24,7 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
+
   #  - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see
