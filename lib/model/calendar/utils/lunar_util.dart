@@ -9,7 +9,7 @@ class LunarUtil {
    * 农历的月份
    */
   static const List<String> LUNAR_MONTH_TEXT = [
-    "春节",
+    "正月",
     "二月",
     "三月",
     "四月",
